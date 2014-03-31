@@ -1,0 +1,216 @@
+{# src/G5/ProjetBundle/Resources/views/Projet/showJob.html.twig #}
+ {% extends '::base.html.twig' %}
+{#% block stylesheets %}
+    {{ parent() }}
+<link href="{{ asset('/css/contact.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %#}
+ {% block body %}
+<div class="row">
+    <h3 class="titre">
+            {{ annonce.titre | raw}}
+        </h3>
+        <hr/>
+        <div class="col-md-3 col-lg-3">
+            <div class="item"> 
+               {% set size = annonce.photos | length %}
+                    {{ annonce.photos|length}} 
+                        {% if size == 0 %}photos{%endif%}
+                        {% if size == 1 %}photo{%endif%}
+                        {% if size > 1 %}photos{%endif%}
+                 {% if size == 0 %}
+                    <img class="img-responsive img-thumbnail "
+                         src="{{ asset('album_empty.png') }}"
+                         width=""                                        
+                         />                                   
+                          {% elseif size > 0 %}
+                     {% set first = annonce.photos | first %}
+                <a class="fancybox" rel="gallery1" href="{{ asset(first.getWebPath()) }}" title=" {{ first.alt}}">
+                    <img class="img-responsive img-rounded"
+                         src="{{ asset(first.getWebPath()) }}"
+                         alt="{{ first.alt}}"
+                         width="auto"
+                         />
+                </a>
+                <hr/>
+                <div class="row">
+                     {% for photo in annonce.photos %}
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"> 
+                            <a class="fancybox" rel="gallery1" href="{{ asset(photo.getWebPath()) }}" title=" {{ photo.alt}}">
+                                <img class="img-responsive img-rounded"
+                                     src="{{ asset(photo.getWebPath()) }}"
+                                     alt="{{ photo.alt}}"
+                                     width="auto"
+                                     />
+                            </a>
+                        </div>
+                    {% else %}
+
+                    {% endfor %}
+                    </div>
+                {% endif %}
+
+
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 annonce">
+                <table class="table table-hover table-condensed">
+                    <thead>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <th>{% trans %}Déscription{% endtrans %}</th>
+                            <td>{{ annonce.description | raw}}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Lieu et Contact public{% endtrans %}</th>
+                            <td>{{ annonce.lieu | raw}}<br/>{{ annonce.contact | raw}}</td>
+                        </tr>
+                        <tr>
+                            <th>{{'Prix'|trans}}</th>
+                            <td>{{ annonce.prix | raw}}</td>
+                        </tr>
+
+                    {% if annonce.annonceCategory.nom == "vehicule"%}
+                        <tr>
+                            <th>{{'Marque'|trans}}</th>
+                            <td>{{ annonce.marque | raw}}</td>
+                        </tr>
+                        <tr>
+                            <th>{{'Kilométrage'|trans}}</th>
+                            <td>{{ annonce.km | raw}}</td>
+                        </tr>
+                        <tr>
+                            <th>{{'Etat'|trans}}</th>
+                            <td>{{ annonce.etat | raw}}</td>
+                        </tr>
+                        <tr>
+                            <th>{{'Energie'|trans}}</th>
+                            <td>{{ annonce.energie | raw}}</td>
+                        </tr>
+                        <tr>
+                            <th>{{'Année de fabrication'|trans}}</th>
+                            <td>{{ annonce.annee | raw}}</td>
+                        </tr>
+                    {%elseif annonce.annonceCategory.nom == "immobilier"%}
+                        <tr>
+                            <th>{{'Surface'|trans}}</th>
+                            <td>{{ annonce.surface | raw}} m2</td>
+                        </tr>
+                        <tr>
+                            <th>{{'Nombre de pièces'|trans}}</th>
+                            <td>{{ annonce.pieces | raw}}</td>
+                        </tr>
+                    {%endif%}
+                    </tbody>
+                    <tfoot>
+                    </tfoot>
+                </table>
+
+            </div>
+        {%if app.user == annonce.auteur%}
+            <div class="col-md-3 col-lg-3 ">
+                <div class="alert alert-warning">
+                    Vous êtes proprietaire de cette annonce!
+                    <a class="list-group-item" href="{{ path('g5_show_mon_annonce', {"id": annonce.id,"titre": annonce.titre|replace({" ":"-",".":""})}) }}">
+                        Voir en tant que propriétaire
+                    </a>
+                </div>
+            </div>
+            {%else%}
+            <div class="col-md-3 col-lg-3">
+                <div class="alert alert-success">
+                    <a class="list-group-item" href="{{ path('g5_add_reponse_annonce', {"id": annonce.id,"titre": annonce.titre|replace({" ":"-",".":""})}) }}">
+                       {% trans %} Contacter l'annonceur{% endtrans %}
+                        </a>
+                    </div>
+                </div>
+        {%endif%}
+  {% if is_granted('ROLE_USER') %}
+                <div class="col-md-8 col-lg-8 annonce">
+                    <h2 class="titre">{% trans %}Mes réponses{% endtrans %}</h2>
+                    {% for flashMessage in app.session.flashbag.get('add_reponse') %}
+                    <div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content alert-success">
+                                <!-- <div class="modal-header">
+                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                     <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                                 </div>
+                                -->
+                                <div style="text-align: center" class="modal-body">
+                                    <div class="flash-notice">
+
+                                        <h4> {{ flashMessage|nl2br }}</h4>
+
+
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">{{'Fermer'|trans}}</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                     {% for reponse in annonce.reponses |reverse if reponse.auteur == app.user%}
+                    <div class="messages cadre">
+                        <h4>{{ reponse.auteur.username | raw}}</h4>
+                        <small class="pull-right">le {{ reponse.createAt|date("d/m/Y") }}<br/> à {{ reponse.createAt|date("H:i:s") }}</small>
+
+                        <p>{{ reponse.reponse | raw}}</p>
+                        {% for sousReponse in reponse.sousReponses%}
+                        <div class="panel-group" id="accordion">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <a class="" data-toggle="collapse" data-parent="#accordion" href="#collapse{{sousReponse.id}}">
+                                        <h2 class="panel-title titre">                            
+                                             {{ sousReponse.auteur.username | raw}}
+                                                <small class="pull-right">le {{ sousReponse.createdAt|date("d/m/Y") }}<br/> à {{ sousReponse.createdAt|date("H:i:s") }}</small>
+                                            </h2>
+                                        </a>
+                                    </div>
+                                    <div id="collapse{{sousReponse.id}}" class="panel-collapse collapse">
+                                        <div class="panel-body messages affiche">
+                                            <p>{{ sousReponse.reponse | raw}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                    {% endfor %}
+                            <a class="list-group-item alert-info" href="{{ path('g5_add_sous_reponse_annonce', {"idRep": reponse.id,"titre": annonce.titre|replace({" ":"-",".":""}),"idAnnonce": annonce.id}) }}">
+                                repondre
+                            </a>
+                        </div>
+                    {% else %}
+                    {% trans %}Aucune réponse actuelement{% endtrans %}
+                    {% endfor %}
+                    </div>
+        {%endif%}
+                </div>
+                <div class="row">
+                    <a class="list-group-item alert-info titre" href="{{ path('g5_all_annonce')}}">
+                   {% trans %} Retour aux annonces{% endtrans %}
+                        </a>
+                    </div>
+                    <script type="text/javascript">
+                                $(document).ready(function() {
+                                      $(".fancybox").fancybox({
+                                              openEffect	: 'none',
+                                              closeEffect	: 'none'
+                                      });
+                                      $(".various").fancybox({
+                                              fitToView	: false,
+                                              width		: '70%',
+                                              height		: '70%',
+                                              autoSize	: false,
+                                              closeClick	: false,
+                                              openEffect	: 'none',
+                                              closeEffect	: 'none'
+                                       });
+                              });
+                        </script>
+ {% endblock %}
+

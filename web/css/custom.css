@@ -1,0 +1,245 @@
+/* 
+    Document   : custom
+    Created on : 21 oct. 2013, 22:25:44
+    Author     : eningabiye
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+body { 
+    background-color: #D3D3D3;
+    padding-top: 60px;
+}
+.container{
+    background-color: #F8F8F8;
+}
+.titre{
+    background-color: #F8F8F8;
+    color: #7AC9DE;
+    text-align: center;
+}
+
+.affiche{
+    background-color: white;
+    border-style:solid;
+    border-color:yellowgreen;
+    border-radius: 5px;
+    padding: 5px;
+    opacity: 0.8;
+
+}
+
+.afficheCaption{
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px;
+    opacity: 0.9;
+
+}
+.affiche-image{
+    background-color: #EFE8E1;
+    border-style:solid;
+    border-color:yellowgreen;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.bordo{
+    border-style:solid;
+    border-color:graytext;
+    border-radius: 5px;
+}
+
+.comment{
+    background-color: whitesmoke;
+    border-radius: 5px;
+    opacity: 0.8;
+}
+
+.affichage{
+    background-color: #0761AF;
+    border-radius: 5px;
+    opacity: 0.9;
+}
+
+.affichage-image{
+    background-color: #0761AF;
+    border-radius: 5px;
+}
+
+.affichage-album{
+    border-radius: 5px;
+    float: left;
+    display: inline;
+}
+
+.form{
+    background-color: palegreen;
+    border-radius: 5px;
+    opacity: 0.8;
+}
+
+
+h1,h2,h3 {
+    font-family: 'Patua One', cursive;
+
+}
+
+h4,h5{
+    font-family: 'Oswald', sans-serif;
+
+}
+
+
+
+p{
+    font-family: 'Ubuntu', serif;
+}
+
+.navbar-inner, .navbar-default {
+    font-family: 'Patua One', cursive;
+    background-color:yellowgreen;
+    background-image: none;
+    background-repeat: no-repeat;
+    opacity: 0.9;
+    filter: none;
+}
+
+
+.dropdown-menu{
+    font-family: 'Oswald', sans-serif;
+    background-color:#BBFBD7;
+}
+
+.cadre{
+
+    border: 5px solid;
+    border-radius: 6px;
+    border-color: paleturquoise;
+    padding: 10px;
+}
+
+.messages{
+    border-radius: 2px;
+    margin: 6px;
+    background-color: #F5EEE7;
+
+}
+
+.sms_bubble{
+    text-shadow: rgba(255,255,255,0.6) 0px 1px 0px;
+    border: #838fa7 1px solid;
+    border-radius:5px;
+    background: rgba(114,198,40,0.9);
+    box-shadow: rgba(0,0,0,0.5) 0px 10px 8px;
+}
+.blue-right{
+    background-color: rgba(204,204,204,0.9);
+}
+
+.blue-right::after{
+    content: "";
+    display: block;
+    right:20px;
+    background-color: rgba(204,204,204,0.9) !important;
+    -webkit-box-shadow: rgba(0,0,0,0.3) 0px 3px 4px;
+    background-image: -webkit-linear-gradient(bottom, rgba(255, 255, 255, 0.2) 20%, rgba(255,255,255, 0.5) 80%);
+    border-bottom-left-radius:90px 70px !important;
+    -webkit-border-bottom-right-radius: 0px !important;
+
+}
+.sms_bubble::before{
+    content: "";
+    display:block;
+    margin:-10px 0 0 -1.5%;
+    border-radius: 30px;
+    width:103%;
+    height:15px;
+    text-align:center;
+    background-image:-webkit-linear-gradient(bottom, rgba(255,255,255, 0) 0%, rgba(255,255,255, 0.9) 100%);
+}
+.sms_bubble::after{
+    content: "";
+    position: absolute;
+    display: block;
+    margin:9px 5px;
+    width: 1%;
+    min-width:15px;
+    height: 10px;
+    background: rgba(102,204,0,0.9);
+    -webkit-box-shadow: rgba(0,0,0,0.3) 0px 3px 4px;
+    background-image: -webkit-linear-gradient(bottom, rgba(255, 255, 255, 0.2) 20%, rgba(255,255,255, 0.5) 80%);
+    -webkit-border-bottom-right-radius: 90px 70px;
+}
+.read{
+    font-family: 'Patua One', cursive;
+}
+
+.read a{
+    font-family: 'Patua One', cursive;
+}
+
+
+
+.annonce .row-annonce{
+    background-color: #FFFFFF;
+}
+
+ground_annonce{
+
+}
+ground_job{
+
+}
+
+.carrousel-accueil{
+    height:100px!important;
+
+}
+
+.annonce-accueil{
+    height:100px;
+    background-color:green;
+    border:1px solid black;
+    text-align: center;
+
+}
+
+.job-accueil{
+    height:100px;
+    background-color:yellowgreen;
+    border:1px solid black;
+    text-align: center;
+
+}
+
+.lang{
+    background-color:yellowgreen;
+
+}
+
+#canvas_burundi {
+    /*width:600px;
+    border: 1px solid #aaa;*/
+}
+
+.jumbotron {
+    background-color: yellowgreen;
+    /*color: inherit;*/
+    color: white;
+    font-size: 21px;
+    font-weight: 200;
+    line-height: 2.14286;
+    margin-bottom: 30px;
+    padding: 5px;
+}
+.btn-group .active{
+    color: yellowgreen;
+    font-weight: bold;
+}
+
+
+
+
+
+

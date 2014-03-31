@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="col-lg-offset-3 col-lg-6 col-lg-offset-3 affiche">
+            {% trans_default_domain 'FOSUserBundle' %}
+
+            <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="">
+                    {{ form_widget(form) }}
+                    <div>
+                        <input class="btn btn-info" type="submit" value="{{ 'registration.submit'|trans }}" />
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <footer class="affiche">
+            <blockquote>
+                <small>
+                    Conformément à la loi « informatique et libertés » du 6 janvier 1978 modifiée en 2004, vous bénéficiez d’un droit d’accès et de rectification aux informations qui vous concernent, que vous pouvez exercer en vous adressant à eningabiye@eningabiye.com
+                </small>
+            </blockquote>
+        </footer>

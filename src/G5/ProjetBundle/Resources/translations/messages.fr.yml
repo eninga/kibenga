@@ -1,0 +1,60 @@
+Hello: Bonjour
+hello: bonjour
+Register: 'Créer un compte'
+register: 'créer un compte'
+Job: Emploi
+job: emploi
+advent: annonce
+Advents: Annonces
+traineeship: stage
+home: accueil
+Home: Accueil
+login: login
+username: 'nom d''utilisateur'
+lastename: nom
+firstname: prénom
+password: 'mot de passe'
+photo: photo
+Photos: Photos
+Message: Message
+Messages: Messages
+Déscription: Déscription
+'Lieu et Contact public': 'Lieu et Contact public'
+Prix: Prix
+Marque: Marque
+Kilométrage: Kilométrage
+Etat: Etat
+Energie: Energie
+'Année de fabrication': 'Année de fabrication'
+Surface: Surface
+'Nombre de pièces': 'Nombre de pièces'
+'Contacter l''annonceur': 'Contacter l''annonceur'
+'Mes réponses': 'Mes réponses'
+'Aucune réponse actuelement': 'Aucune réponse actuelement'
+'Retour aux annonces': 'Retour aux annonces'
+'publiée le': 'publiée le'
+à: à
+'voir les détails': 'voir les détails'
+'Aucune annonce trouvée': 'Aucune annonce trouvée'
+'Votre photo pour': 'Votre photo pour'
+'a été ajoutée': 'a été ajoutée'
+'Retour à l''annonce': 'Retour à l''annonce'
+'Retour à mes annonces': 'Retour à mes annonces'
+'Ajouter une autres photo': 'Ajouter une autres photo'
+'Votre réponse pour': 'Votre réponse pour'
+'a été envoyéee': 'a été envoyéee'
+'a été envoyée': 'a été envoyée'
+prix: prix
+lieu: lieu
+'Service en cours de lancement': 'Service en cours de lancement'
+merci: merci
+bye: 'au revoir'
+Emplois/Stages: Emplois/Stages
+Chercher: Chercher
+'change de langue': 'change de langue'
+g5.projet.annonce.ragarder: regarder
+g5.projet.annonce.merci: merci
+mention.legale: "Les informations recueillies sur ce site permettent de vous identifier afin vous identifier.\n"
+mention.charte: "charte du site\n"
+edit: Edition
+edit.annonce: 'Edition d''une annonce'

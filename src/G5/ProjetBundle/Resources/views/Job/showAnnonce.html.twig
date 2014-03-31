@@ -1,0 +1,45 @@
+{# src/G5/ProjetBundle/Resources/views/Projet/showAnnonce.html.twig #}
+ {% extends '::base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+<link href="{{ asset('/css/contact.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+ {% block body %}
+
+<table class="table table-hover table-responsive">
+    <thead>
+    <th></th>
+    <th>Info</th>
+    <th>Description</th>
+    <th>category</th>
+    <th>auteur</th>
+    <th>titre</th>
+    <th>price</th>
+</thead>
+<tbody>
+  {% for annonce in annonces %}
+        <tr>
+            <td>
+                <a href="#"> 
+                    <img class="img-responsive img-circle"
+                         src="{{ asset(annonce.getWebPathSmall()) }}"
+                         alt="{{ annonce.getWebPath()}}"
+                         width="120"
+                         />
+                </a>
+            </td>
+
+            <td>{{ annonce.info | truncate(200, true, '...')}}</td>
+            <td>{{ annonce.description | raw}}</td>
+            <td>{{ annonce.category.name }}</td>
+            <td>{{ annonce.auteur.username }}</td>
+            <td>{{ annonce.titre }}</td>
+            <td>{{ annonce.price }} {{ annonce.monnaie }}</td>
+
+        </tr>
+  {% else %}
+    <td>Pas d'annonce trouvé.</td>
+  {% endfor %}
+</tbody>
+</table>
+ {% endblock %}

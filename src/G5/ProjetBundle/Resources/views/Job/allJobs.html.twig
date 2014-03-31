@@ -1,0 +1,31 @@
+{# src/G5/ProjetBundle/Resources/views/Projet/showAnnonce.html.twig #}
+ {% extends '::base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+<link href="{{ asset('/css/contact.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+ {% block body %}
+<h3 class="titre">{%trans%}Tous les offres emplois et stages{%endtrans%} {{'filtrer'|trans}}</h3>
+<hr/>
+<div class="job">
+    <div class="list-group">
+  {% for job in jobs | reverse%}
+<!-- <h1>{{ job.category.nom | truncate(200, true, '...') }}</h1>-->
+            <a class="list-group-item" href="{{ path('g5_job_show_job', {"id": job.id,"cat":job.category.nom,"titre":job.titre|replace({" ":"-",".":""}),'_format': '.html'}) }}">
+                <h5>
+                        {{ job.titre|raw}}
+                        <small class="pull-right ">publiéé le {{ job.createdAt|date("d/m/Y") }}</small>
+
+                    </h5>
+                    <p>
+                      
+                        {{ job.presentation | raw|truncate(100)}}
+                    </p>
+                </a>
+                
+  {% else %}
+                <h2>Pas d'job trouvé.</h2>
+  {% endfor %}
+            </div>
+        </div>
+ {% endblock %}

@@ -1,0 +1,29 @@
+{# src/G5/ProjetBundle/Resources/views/Projet/showJob.html.twig #}
+ {% extends '::base.html.twig' %}
+{#% block stylesheets %}
+    {{ parent() }}
+<link href="{{ asset('/css/contact.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %#}
+ {% block body %}
+<div class="row">
+    <br/>
+        <br/>
+    <div class="alert alert-success">
+        
+
+        <h2> {%trans%}Votre photo pour{%endtrans%} "{{annonce.titre}}" {%trans%}a été ajoutée{%endtrans%}!</h2>
+        <br/>
+         <a class="list-group-item alert-info" href="{{ path('g5_show_mon_annonce', {"id": annonce.id,"titre": annonce.titre})}}">
+            {%trans%}Retour à l'annonce{%endtrans%}
+        </a>
+        <a class="list-group-item alert-info" href="{{ path('g5_all_mes_annonces')}}">
+            {%trans%}Retour à mes annonces{%endtrans%}
+        </a>
+        <a class="list-group-item alert-info" href="{{ path('g5_add_photo_annonce', {"id": annonce.id,"titre": annonce.titre}) }}">
+           {%trans%}Ajouter une autres photo{%endtrans%}
+        </a>
+    </div>
+</div>
+
+ {% endblock %}
+

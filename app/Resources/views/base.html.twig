@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="albums photos">
+        <meta name="author" content="Eric NINGABIYE">
+        <title>{% block title %}Welcome to KIBENGA!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link href="{{ asset('css/bootstrap.min.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('css/bootstrap-theme.min.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('http://fonts.googleapis.com/css?family=Open+Sans|Oswald|Ubuntu|Patua+One') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('css/custom.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('css/signin.css') }}" type="text/css" rel="stylesheet" />
+        <!-- Add fancyBox main JS and CSS files -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('source_fancy/jquery.fancybox.css?v=2.1.5') }}" media="screen" />
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
+        <script type="text/javascript">
+            var _CLANK_URI = "ws://{{ clank_host }}:{{ clank_port }}";
+
+            </script>
+        </head>
+        <body>
+            <div class="container">
+                <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+                    <div class="navbar-inner">
+                        <a class="col-lg-offset-2 pull-left" href="{{path('home')}}"><img src="{{ asset('logo.png') }}"
+                                                                                          height="60" alt="logo"
+                                                                                          /></a>
+                        <div class="col-lg-offset-3">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                                    <span class="sr-only">Navigation</span>
+                                    Menu
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+
+
+                            </div>
+                            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                                <ul class="nav navbar-nav">
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <span class="label label-success"><span class="glyphicon glyphicon-user"></span>{{ app.user.username | upper }}</span> <b class="caret"></b></a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a href="{{ path('fos_user_profile_show') }}"><span class="glyphicon glyphicon-profile"></span> Profil</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-off"> </span> Déconnexion</a>
+                                                </li>
+                                            </ul>
+
+                                {% else %}
+                                        <li> 
+                                            <a href="{{ path('fos_user_security_login') }}">Connexion</a>
+                                        </li>
+                                 {% endif %}
+
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span>{% trans %}Jobs{% endtrans %}{{render(controller('G5ProjetBundle:Common:jobSize'))}} <b class="caret"></b></a>
+                                            <ul class="dropdown-menu">
+                                                <li class="list-group-item">
+                                                    <a href="{{ path('g5_job_all_job',{'_format': '.html'}) }}">
+                                                    {{"Offres d'emploi ou de stages"|trans}}
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <a href="{{ path('g5_job_all_job',{'_format': '.html'}) }}">
+                                                    {{"Demandes d'emploi ou de stages"|trans}}
+                                                            </a>
+                                                        </li>
+                                                        <li class="list-group-item">
+                                                            <a href="{{ path('g5_job_add_job') }}">
+                                                   {{"Déposer gratuitement une offre ou demande d'emploi ou de stage"|trans}}
+                                                                </a>
+                                                            </li>
+
+                                                            <li class="list-group-item">
+                                                                <a href="{{ path('g5_my_jobs') }}">
+                                                    {{"Mes Offres d'emplois ou de stages"|trans}}
+                                                                    </a>
+                                                                </li>
+
+                                                            </ul>
+                                                        </li>
+                                                        <li class="dropdown">
+                                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span>{% trans %}Advents{% endtrans %}<loaod class="message_number">{{render(controller('G5ProjetBundle:Common:annonceSize'))}}</loaod><b class="caret"></b></a>
+                                                            <ul class="dropdown-menu">
+                                                                <li class="list-group-item">
+                                                                    <a href="{{ path('g5_all_annonce') }}">
+                                                    {{'Toutes les offres'|trans}}
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="list-group-item">
+                                                                        <a href="{{ path('g5_all_annonce') }}">
+                                                    {{'Toutes les demandes'|trans}}
+                                                                            </a>
+                                                                        </li>
+
+                                                                        <li class="list-group-item">
+                                                                            <a href="{{ path('g5_add_annonce_by_category') }}">
+                                                    {{'Déposer gratuitement une annonce'|trans}}
+                                                                                </a>
+                                                                            </li>
+
+                                                                            <li class="list-group-item">
+                                                                                <a href="{{ path('g5_all_mes_annonces') }}">
+                                                    {{'Mes annonces'|trans}}
+                                                                                    </a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="{{path('media_photo_messages')}}">
+                                                                                <span class="glyphicon glyphicon-envelope"></span> {% trans %}Messages{% endtrans %}{{render(controller('G5ProjetBundle:Common:messageSize'))}}
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="dropdown">
+                                                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span>{{'change de langue'|trans}} <b class="caret"></b></a>
+                                                                            <ul class="dropdown-menu">
+
+                                                                                <li>
+                                                                                                         {% for locale in ['rn','fr', 'en'] %}
+                                                                                        <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale' : locale})) }}">
+                                                                                           {%if locale == "fr"%}
+                                                                                                  {%set lang= "Français"%}
+                                                                                                <img src="{{ asset('lang/flag_of_france.png') }}"
+                                                                                                     width="20"
+                                                                                                     alt="{{lang}}"
+                                                                                                     title="{{lang}}"
+                                                                                                     />{{lang}}
+                                                                                                 {%elseif locale == "rn"%}
+                                                                                                  {%set lang= "Kirundi"%}
+                                                                                            <img src="{{ asset('lang/flag_of_burundi.png') }}"
+                                                                                                 width="20"
+                                                                                                 alt="{{lang}}"
+                                                                                                 title="{{lang}}"
+                                                                                                 />{{lang}}
+                                                                                 {%elseif locale == "en"%}
+                                                                                     {%set lang= "English"%}
+                                                                                        <img src="{{ asset('lang/flag_of_united_kingdom.png') }}"
+                                                                                             width="20"
+                                                                                             alt="{{lang}}"
+                                                                                             title="{{lang}}"
+                                                                                             />{{lang}}
+                                                                                           {%endif%}
+
+                                                                                </a> 
+                                                                                              {% endfor %}
+                                                                            </li>
+                                                                        </ul>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </nav>
+                                     {% if is_granted("ROLE_SUPER_ADMIN") %}
+                                                <div class="navbar navbar-default" role="navigation">
+                                                    <div class="navbar-inner">
+                                                        <div class="col-lg-offset-3">
+                                                            <div class="navbar-header">
+                                                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                                                                    <span class="sr-only">Navigation</span>
+                                                                    Admin
+                                                                    <span class="icon-bar"></span>
+                                                                    <span class="icon-bar"></span>
+                                                                    <span class="icon-bar"></span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                                                                <ul class="nav navbar-nav">
+                                                                    <li class="dropdown">
+                                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-eye-open"></span><span class="glyphicon glyphicon-wrench"></span>Manager<b class="caret"></b></a>
+                                                                        <ul class="dropdown-menu">
+                                                                            <li>
+                                                                                <a href="{{path('media_photo_demandeur_acces')}}">
+                                                                                    <span class="glyphicon glyphicon-picture"></span> Demandeurs d'accès
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="{{path('media_user_members')}}">
+                                                                                    <span class="glyphicon glyphicon-user"></span><span class="glyphicon glyphicon-user"></span> Users
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="{{ path('g5_job_cat_job') }}">
+                                                                                    Ajouter une category(emploi,stage,...)
+                                                                                </a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </li>
+                                                                    <li class="dropdown">
+                                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-list-alt"></span>{% trans %}Photos{% endtrans %}<b class="caret"></b></a>
+                                                                        <ul class="dropdown-menu">
+                                                                            <li>
+                                                                                <a href="{{path('media_photo_homepage')}}">
+                                                                                    <span class="glyphicon glyphicon-picture"></span> {{'Tous'|trans}}
+                                                                                </a>
+                                                                            </li>
+
+                                                                            <li>
+                                                                                <a href="{{path('media_photo_homepage')}}">
+                                                                                    <span class="glyphicon glyphicon-picture"></span> Mes Albums
+                                                                                </a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="{{path('media_video_homepage')}}">
+                                                                            <span class="glyphicon glyphicon-facetime-video"></span> Videos
+                                                                        </a>
+                                                                    </li>
+                                                                    <a class="navbar-brand" href="{{path('media_user_members')}}">{% trans %}Users{% endtrans %}</a>
+                                                                    </a>
+
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        {% endif %}
+                                                <div class="row">
+                                                    <div class="col-lg-2">
+                                                         <!--  <img src="{{ asset('images/default/pub.jpg') }}"
+                                                               width="140"
+                                                               alt="pub"
+                                                               />-->
+                                                    </div>
+                                                    <div class="col-lg-8">
+                                                    {% block body %}
+                                                    {% endblock %}
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                           <!-- <img src="{{ asset('images/default/pub.jpg') }}"
+                                                                 width="140"
+                                                                 alt="pub"
+                                                                 />-->
+                                                        </div>
+                                                    </div>
+
+                                                    <hr/>
+                                                    <footer class="" style="text-align: center">
+                                                        <audio  id="beep" src="{{ asset('audio/hl.mp3') }}">
+                                                        </audio>
+                                                        <pre> <a>Charte d'utilisation</a> email:<a href="email:support@{{site_name}}">support@{{site_name}}</a> <a>Contactez-nous</a></pre>
+                                                        <a href="http://www.kwisoko.com">&copy; kwisoko.com</a> 2014, {{'tous droits réservés'|trans}}. 
+                                                    </footer> 
+                                                </div> <!-- /container -->
+                                                <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+                                                <script type="text/javascript" src="{{ asset('source_fancy/jquery.fancybox.js?v=2.1.5') }}"></script>
+                                                <script type="text/javascript" src="{{ asset('js/hinclude.js') }}"></script>
+                                                 {% block javascripts %}
+                                                <script type="text/javascript" src="{{ asset('js/chat.js') }}"></script>
+                                                {% endblock %}
+                                                {{ clank_client() }}
+                                                <script type="text/javascript">
+                                                    $(document).ready(function(){
+                                                          $('#myModal').modal()
+                                                      });
+                                                  /*  var beep= function Beep() {
+                                                                var sound = document.getElementById("beep");
+                                                                sound.play();
+                                                            }
+                                               setInterval(function(){
+                                                   var url = "{ path('load_annonce_size') }}";
+                                                     $(".message_number").load(url,beep);
+                                                 },10000);
+                                                    */
+                                                 /*   var myClank = Clank.connect(_CLANK_URI);
+                                                    myClank.on("socket/connect", function(session){
+                                                       //session is an Autobahn JS WAMP session.
+
+                                                        console.log("Successfully Connected!");                                                    
+                                                    
+                                        //this will call the server side function "Sample::addFunc"
+                                        session.call("sample/add_func", [6, 5])
+                                            .then(  //using "then" promises.
+
+                                                function(result) //the function for a valid result
+                                                {
+                                                    console.log("RPC Valid!", result);
+                                                },
+
+                                                function(error, desc) // the function to handle an error
+                                                {
+                                                    console.log("RPC Error", error, desc);
+                                                }
+
+                                            );
+                                                                     //this will call the server side function "Sample::addFunc"
+                                        session.call("sample/sub_func", [6, 5])
+                                            .then(  //using "then" promises.
+
+                                                function(result) //the function for a valid result
+                                                {
+                                                    console.log("RPC Valid!", result);
+                                                },
+
+                                                function(error, desc) // the function to handle an error
+                                                {
+                                                    console.log("RPC Error", error, desc);
+                                                }
+
+                                            );
+                             
+                                 //the callback function in "subscribe" is called everytime an event is published in that channel.
+
+                                        session.subscribe("acme/channel", function(uri, payload){
+                                            console.log("Received message", payload.msg);
+                                        });
+
+                                        session.publish("acme/channel", {msg: "This is a message!"});
+
+                                        session.unsubscribe("acme/channel");
+
+                                        session.publish("acme/channel", {msg: "I won't see this"});
+                                                    })
+
+                                                    myClank.on("socket/disconnect", function(error){
+                                                        //error provides us with some insight into the disconnection: error.reason and error.code
+
+                                                        console.log("Disconnected for " + error.reason + " with code " + error.code);
+                                                    })
+    */
+   
+                                                    </script>
+                                                </body>
+                                            </html>

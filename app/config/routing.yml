@@ -1,0 +1,51 @@
+media_video:
+    resource: "@MediaVideoBundle/Resources/config/routing.yml"
+    prefix:   /{_locale}
+    requirements:
+        _locale: en|fr|rn # les locales disponibles, séparées par des pipes « | »
+
+media_photo:
+    resource: "@MediaPhotoBundle/Resources/config/routing.yml"
+    prefix:   /{_locale}
+    requirements:
+        _locale: en|fr|rn # les locales disponibles, séparées par des pipes « | »
+    
+g5_projet:
+    resource: "@G5ProjetBundle/Resources/config/routing.yml"
+    prefix:    /{_locale} # Ici, on ajoute {_locale} au préfixe !
+    requirements:
+        _locale: en|fr|rn # les locales disponibles, séparées par des pipes « | »
+
+    
+media_user:
+    resource: "@MediaUserBundle/Resources/config/routing.yml"
+    prefix:   /{_locale}
+    requirements:
+        _locale: en|fr|rn # les locales disponibles, séparées par des pipes « | »
+    
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+ 
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /profile
+ 
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+ 
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+ 
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /profile
+
+#home_local:
+#    pattern:  /{locale}
+#    defaults: { _controller: MediaPhotoBundle:Photo:index }
+    
+home:
+    pattern:  /{_locale}
+    defaults: { _controller: G5ProjetBundle:Common:index, _locale: fr }

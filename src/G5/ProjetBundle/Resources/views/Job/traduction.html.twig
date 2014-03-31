@@ -1,0 +1,11 @@
+{# src/G5/ProjetBundle/Resources/views/Projet/traduction.html.twig #}
+ {% extends '::base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+<link href="{{ asset('/css/contact.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+ {% block body %}
+{{ 'Hello'|trans }} {{ name }}!, je suis bien traduit , courage <a href="{{ path('g5_projet_homepage', {'_format': 'pdf'}) }}">
+    PDF Version
+</a>!!
+ {% endblock %}

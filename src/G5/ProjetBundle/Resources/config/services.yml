@@ -1,0 +1,19 @@
+parameters:
+#    g5_projet.example.class: G5\ProjetBundle\Example
+    media.rpc.class: Media\UserBundle\RPC\MediaService
+    media.topic.class: Media\UserBundle\Topic\MediaTopic
+    media.periodic.class: Media\UserBundle\Periodic\MediaPeriodic
+    
+
+services:
+#    g5_projet.example:
+#        class: %g5_projet.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+    acme_hello.rpc_sample_service:
+        class: "%media.rpc.class%"
+        
+    acme_hello.topic_sample_service:
+        class: "%media.topic.class%"
+        
+    acme_hello.periodic_sample_service:
+        class: "%media.periodic.class%"

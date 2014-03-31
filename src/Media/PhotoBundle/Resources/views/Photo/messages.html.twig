@@ -1,0 +1,103 @@
+ {% extends '::base.html.twig' %}
+{% block body %}
+<div class="row">
+    <div class="col-lg-offset-1 col-lg-9">
+        <h2 class="affiche" style="text-align: center">
+            Messages
+        </h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-offset-1 col-lg-3">
+        <div class="affiche">
+         {% if is_granted('ROLE_USER') %} 
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <a class="" href="{{ path('media_photo_send_messages') }}">
+                            <span class="glyphicon glyphicon-edit"></span> 
+                            Ecrire un message
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+
+                        <a class="" href="{{ path('media_photo_messages') }}">
+                            <span class="glyphicon glyphicon-envelope"></span> 
+                            Messages reçus
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a class="" href="{{ path('media_photo_messageSent') }}">
+                            <span class="glyphicon glyphicon-send"></span> 
+                            Messages envoyés
+                        </a>
+                    </li>
+
+                </ul>
+
+         {% endif %}
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <h3 class="affiche">
+                Messages {{tag}}
+            </h3>
+            <div class="affiche">
+                <ul class="list-group">
+
+        {% for message in messages | reverse%}
+                    {% if tag == "envoyés" %}
+                        {%set source=message.destinataire.id%}
+                     {% else%}
+                        {%set source=message.source.id%}
+                     {% endif%}
+                    
+                     {% if message.read == 0 %}
+                        {%set status="strong"%}
+                     {% else%}
+                        {%set status="small"%}
+                     {% endif%}
+                    <{{status}}>
+                    <a class="read" href="{{ path('media_photo_message',{"source":source,"id":message.id}) }}">
+
+                        <li class="list-group-item">
+
+                {{message.source}} <b>    :   </b> 
+                        {{message.objet}}
+                            <span class="pull-right">
+                                {{message.dateSent|date("d/m/Y")}} à {{ message.dateSent|date("H:i") }}
+                                </span>
+
+                            </li>
+                        </a>
+                        </{{status}}>
+
+                {% else %}
+                        <p>
+                            Vous n'avez pas de message.
+
+                        </p>
+
+             {% endfor %}
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+          $(document).ready(function() {
+                $(".fancybox").fancybox({
+                        openEffect	: 'none',
+                        closeEffect	: 'none'
+                });
+                $(".various").fancybox({
+                        fitToView	: false,
+                        height		: '70%',
+                        autoSize	: false,
+                        closeClick	: false,
+                        openEffect	: 'none',
+                        closeEffect	: 'none'
+                 });
+        });
+            </script>
+{% endblock %}

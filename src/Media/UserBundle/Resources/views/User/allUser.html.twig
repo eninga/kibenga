@@ -1,0 +1,141 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="affiche" style="text-align: center">Albums
+         {% if is_granted('ROLE_SUPER_ADMIN') %}
+                <a class="btn btn-primary btn-sm pull-right " href="">
+                    <span class="glyphicon glyphicon-edit"></span>
+                    Ajouter un user
+                </a>
+         {% endif %}
+             {% set size = users | length %}
+                {{size}} utilisateurs
+
+            </h3>
+            <div class="affichage">
+
+                <ul class="list-group">
+                     {% for user in users %}
+                        <li class="list-group-item">
+                            <b>{{user.username}} {{user.email}} a les rôles:</b>    
+                            {% for role in user.roles %}
+                            [{{role}}] 
+                            {% endfor%}
+
+                            <div class="btn-group pull-right">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    Promote
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#">
+                                            <span id="promotionPhoto{{user.username}}" type="Photo" tag="1" username="{{user.username}}" class="promote">
+                                                <small class="">
+                                                    promote Photo?
+                                                </small> 
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span id="promotionVideo{{user.username}}" type="Video" tag="2" username="{{user.username}}" class="promote">
+                                                <small class="">
+                                                    promote Video?
+                                                </small> 
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span id="promotionAdmin{{user.username}}" type="Admin" tag="3" username="{{user.username}}" class="promote">
+                                                <small class="">
+                                                    promote Admin?
+                                                </small> 
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="btn-group pull-right">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    Demote
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu ">
+                                    <li>
+                                        <a href="#">
+                                            <span id="demotionPhoto{{user.username}}" type="Photo" tag="1" username="{{user.username}}" class="demote">
+                                                <small class="">
+                                                    demote Photo?
+                                                </small> 
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span id="demotionVideo{{user.username}}" type="Video" tag="2" username="{{user.username}}" class="demote">
+                                                <small class="">
+                                                    demote Video?
+                                                </small> 
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span id="demotionAdmin{{user.username}}" type="Admin" tag="3" username="{{user.username}}" class="demote">
+                                                <small class="">
+                                                    demote Admin?
+                                                </small> 
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+
+
+                        </li>
+                {% else %}
+                        <p>
+                            No users yet.
+
+                        </p>
+
+             {% endfor %}
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+<br/>
+<br/>
+        <script type="text/javascript">
+                                     $(function(){
+                                         $('.promote').click(function () {
+                                             var username = $(this).attr('username');
+                                             var tag = $(this).attr('tag');
+                                             var type = $(this).attr('type');
+                                             var url = "{{ path('media_user_member_add_role',{'username':'text','role':'text2'}) }}";
+                                             url = url.replace("text", username);
+                                             url = url.replace("text2", tag)
+                                             $('#promotion'+type+username).load(url);
+                                             return false;
+                                     });
+                                        $('.demote').click(function () {
+                                             var username = $(this).attr('username');
+                                             var tag = $(this).attr('tag');
+                                             var type = $(this).attr('type');
+                                             var url = "{{ path('media_user_member_remove_role',{'username':'text','role':'text2'}) }}";
+                                             url = url.replace("text", username);
+                                             url = url.replace("text2", tag)
+                                             $('#demotion'+type+username).load(url);
+                                             return false;
+                                     });
+                                  });
+            </script>
+{% endblock %}
+

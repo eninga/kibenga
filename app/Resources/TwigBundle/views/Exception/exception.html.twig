@@ -1,0 +1,16 @@
+{% extends '::base.html.twig' %}
+        {% block body %}
+
+               <h1>Oops! An Error Occurred</h1>
+                <h2>The server returned a "{{ status_code }} {{ status_text }}".</h2>
+
+                <div>
+                    Something is broken. Please e-mail us at <h4>eningabiye@eningabiye.com</h4> or 
+                    send a message to <h4>eningabiye on <a href="{{path('media_photo_messages')}}">
+                            <span class="glyphicon glyphicon-envelope"></span> Messages
+                        </a></h4> and let us know
+                    what you were doing when this error occurred. We will fix it as soon
+                    as possible. Sorry for any inconvenience caused.
+                </div>
+        {% endblock %}
+           

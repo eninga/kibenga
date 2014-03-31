@@ -1,0 +1,302 @@
+{# src/G5/ProjetBundle/Resources/views/Common/index.html.twig #}
+ {% extends '::base.html.twig' %}
+{% block body %}
+<div class="row">
+    <div class="jumbotron">
+
+        <h4 class="">{%trans%}
+            Vous voulez vendre ou faire louer quelque chose?<br/>
+            Vous voulez acheter ou louer quelque chose?<br/>
+            Vous avez une offre d'empoi ou vous êtes demandeur d'emploi?<br/>
+
+        {%endtrans%}
+        </h4>
+        <h2>
+
+                {{site_name}} {%trans%} est là pour répondre à ces question !
+                 {%endtrans%}
+        </h2>
+        <h4>
+
+                    {{site_name}} {%trans%} vous permet de déposer des annonces ou d'en consulter
+            facilement et GRATUITEMENT!
+                 {%endtrans%}
+        </h4>
+    </div>
+</div>
+        {% if 1 == 2%}
+<div class="row">
+    <h4 class="titre">Annonce à la une</h4>
+    <hr/>
+
+</div>
+        {%endif%}
+<div class="row">                
+    <div class="col-lg-6">
+        <h4>{%trans%}Trouver une annonce{%endtrans%}</h4>
+        <form action="{{ path("search") }}" method="post" class="navbar-form navbar-left well" role="search">
+            <!--<h5>'Sélectionner une catégorie'|trans}}</h5>-->
+            <div class="btn-group form-group" id="radio" data-toggle="buttons">
+                <label class="btn btn-primary">
+                    <input class="form-control" type="radio" name="category" value="job" id="job"> {{'Emplois/Stages'|trans}}{{render(controller('G5ProjetBundle:Common:jobSize'))}}
+                </label>
+                <label class="btn btn-primary">
+                    <input class="form-control" type="radio" name="category" value="annonce" id="annonce">{{'Ventes ou locations'|trans}}{{render(controller('G5ProjetBundle:Common:annonceSize'))}}
+                </label>
+            </div>
+            <button style="display: none" id="search" type="submit" class="btn btn-info" value=""><span class="glyphicon glyphicon-search"></span>{{'Chercher'|trans}}</button>
+        </form>
+    </div>
+    <div class="col-lg-6">
+        <h4>{%trans%}Créer une annonce{%endtrans%}</h4>
+        <div class="well btn-group form-group">
+            <a class="btn btn-primary" href="{{ path('g5_job_add_job') }}">
+                         {{'Emplois/Stages'|trans}}
+                </a>  
+                <a class="btn btn-primary" href="{{ path('g5_job_add_job') }}">
+                         {{'Ventes ou locations'|trans}}
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <h3>
+            {%trans%}
+                    Si vous vous posez l'une de ces questions ci dessous, cliquez dessus pour faire apparaitre la réponse
+            {%endtrans%}
+                </h3>
+                <hr/>
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#q1">
+                                      {%trans%}
+                                        1.Je veux deposer une annonce, que dois-je faire?
+                                       {%endtrans%}
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="q1" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    {%trans%}
+                                        Rendez-vous au menu et selon votre offre cliquer sur Emplois ou Ventes et locations
+                                    {%endtrans%}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#q2">
+                                       {%trans%}
+                                            {%endtrans%}
+                                                2. J'ai deposé une annonce, est-ce que je dois parcourir toutes les annonces
+                                                pour trouver la mienne?
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="q2" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                   {%trans%}
+                                                Vous pouvez acceder à vos annonces depuis le menu type de votre annonce
+                                                ou depuis votre profil
+                                            {%endtrans%}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-info">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#q3">
+                                                    {%trans%}
+                                                        3. J'ai deposé une annonce, et après comment ça se passe?
+
+                                                       {%endtrans%}
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="q3" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <p>
+                                                                {%trans%}   
+                                                            Dès que votre annonce est en ligne, les internautes peuvent la consulter
+                                                            et vous contacter depuis votre annonce.
+                                                            Les messages que vous vous échangés sont visibles
+                                                            uniquement par vous. 
+
+
+                                                            Dans tous les cas vous aurez une notification par email.
+                                                                  {%endtrans%}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="panel panel-info">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        <a data-toggle="collapse" data-parent="#accordion" href="#q4">
+                                                    {%trans%}
+                                                                4. Je veux acheter ou louer quel?
+
+                                                       {%endtrans%}
+                                                            </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="q4" class="panel-collapse collapse">
+                                                        <div class="panel-body">
+                                                            <p>
+                                                                {%trans%}   
+                                                                    Dès que votre annonce est en ligne, les internautes peuvent la consulter
+                                                                    et vous contacter depuis votre annonce.
+                                                                    Les messages que vous vous échangés sont visibles
+                                                                    uniquement par vous. 
+
+
+                                                                    Dans tous les cas vous aurez une notification par email.
+                                                                  {%endtrans%}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <!---------------------------chat block--------------------------------------->
+                                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                                {% set user= app.user.username%}
+                                            {%else%}
+                                                {% set user= 'visitor'%}
+                                            {%endif%}
+                                            <div class='row'>
+                                                <div class='span12'>
+                                                    <div class='navbar' style='margin-top:20px;'>
+                                                        <div class='navbar-inner'>
+                                                            <a class="brand" href="#">{{site_name}} Chat</a>
+                                                            <div class='span4' style='margin-top:5px;'>
+                                                                <input disabled="true" value="{{site_name}}Chat" type="text" id="chatroom" style='vertical-align: middle;margin:0;' placeholder="{{site_name}}Chat"/> <a href="#" class='btn btn-submit' id="join-chat" style='margin:0;'>Join</a>
+                                                            </div>
+                                                            <div class='span2' id="connected" style='margin-top:9px;'>Disconnected</div>
+                                                            <div class='span4' id="nickname" style='width:280px; margin-top:5px;' ><input type="text" value="{{ user | upper }}" placeholder="Your Nickname" style='margin:0; width: 186px;' /> <a href="#" class='btn' style='margin:0;'>Change</a></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='row'>
+                                                <div class='span12'>
+                                                    <h2 id="chat-title">Try Clank Chat now, Join a room above!</h2>
+                                                </div>
+                                            </div>
+
+                                            <div class='row'>
+                                                <div class='span12' id="chat-pane" style='height:160px; border: 1px solid #ccc; overflow: auto;'>
+                                                    <ul class='unstyled'>
+                                                        <li>Join a chat room to start chatting!</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class='row' style='margin-top: 20px;'>
+                                                <div class='span12'><input type="text" id="chat-input" style='width: 867px;margin:0;' /><a href="#" class='btn btn-primary' id="send-chat" style='margin:0;'>Send</a></div>
+                                            </div>
+                                            <!---------------------end chat------------------------------------->
+                                            <!--
+                                            <div class="row">
+                                                <h4 class="titre">{%trans%}Chercher par province{%endtrans%}</h4>
+                                                <div class="col-lg-6">
+                                                    <h4>{%trans%}par carte{%endtrans%}</h4>
+                                                    <div id="canvas_burundi">
+                                                    </div>
+                                                </div>
+                                                <div class="">
+                                                    <h4>{%trans%}par nom{%endtrans%}</h4>
+            
+                                                    <div class="col-lg-3">
+                                                        <div class="province_burundi list-group">
+                                                            <li class="list-group-item">Bujumbura Mairie</li>
+                                                            <li class="list-group-item">Bujumbura</li>
+                                                            <li class="list-group-item">Bubanza</li>
+                                                            <li class="list-group-item">Bururi</li>
+                                                            <li class="list-group-item">Cankuzo</li>
+                                                            <li class="list-group-item">Cibitoke</li>
+                                                            <li class="list-group-item">Gitega</li>
+                                                            <li class="list-group-item">Karuzi</li>
+                                                            <li class="list-group-item">Kayanza</li>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <div class="province_burundi list-group">
+                                                        <li class="list-group-item">Kirundo</li>
+                                                        <li class="list-group-item">Makamba</li>
+                                                        <li class="list-group-item">Mwaro</li>
+                                                        <li class="list-group-item">Muramvya</li>
+                                                        <li class="list-group-item">Ngozi</li>
+                                                        <li class="list-group-item">Muyinga</li>
+                                                        <li class="list-group-item">Ruyigi</li>
+                                                        <li class="list-group-item">Rutana</li>
+            
+            
+                                                    </div>
+                                                </div>
+            
+                                            </div>
+                                            -->
+                                            <!--
+                                            <div class="row">
+                                                <div class="carousel-accueil">
+                                                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                                                        <div class="carousel-inner">
+                                                            <div class="item active">
+                                                                <img src="{{ asset('draft/image1.jpeg')}}">
+                                                                <div class="carousel-caption">
+                                                                    ...
+                                                                </div>
+                                                            </div>
+                                                            <div class="item">
+                                                                <img src="{{ asset('draft/image2.jpeg')}}">
+                                                                <div class="carousel-caption">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                        
+                                                        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                                            <span class="glyphicon glyphicon-chevron-left"></span>
+                                                        </a>
+                                                        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                                            <span class="glyphicon glyphicon-chevron-right"></span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br/>
+                                            <div class="row">
+                        
+                                                <div class="col-lg-6 job-accueil">
+                                                    <h4>
+                                                        <a class="" href="{{ path('g5_all_annonce') }}">
+                {{'Advents'|trans}}
+                                                            </a>
+                        
+                                                        </h4>
+                                                    </div>
+                                                    <div class="col-lg-6 annonce-accueil">
+                                                        <h4>
+                                                            <a class="" href="{{ path('g5_job_all_job') }}">
+                {{'Emplois/Stages'|trans}}
+                                                                </a>
+                                                            </h4>
+                                                        </div>
+                                                    </div>
+                                            -->
+                                            <script type="text/javascript" src="{{ asset('js/raphael-min.js') }}"></script>
+                                            <script type="text/javascript" src="{{ asset('js/burundi.js') }}"></script>
+                                            <script type="text/javascript">
+                                                $(function(){
+                                                            $('#radio').click(function () {
+                                                                $('#search').show();
+                                                            });
+                                                    });
+                                                </script>
+
+ {% endblock %}

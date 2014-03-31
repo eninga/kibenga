@@ -1,0 +1,25 @@
+{# src/G5/ProjetBundle/Resources/views/Projet/showAnnonce.html.twig #}
+ {% extends '::base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+<link href="{{ asset('/css/contact.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+ {% block body %}
+<div class="annonce">
+    <h3>{%trans%}Choisissez une catégorie{%endtrans%}</h3>
+    <hr/>
+    <div class="list-group">
+  {% for categorie in categories %}
+            
+            <a class="list-group-item" href="{{ path('g5_add_annonce', {"category": categorie.nom,"idCat":categorie.id}) }}">
+                       <h4> {{ categorie.nom}} 
+                       ( {{ categorie.description}} )
+                       </h4>
+                </a>
+
+  {% else %}
+                <h2>{%trans%}Service en cours de lancement{%endtrans%}.</h2>
+  {% endfor %}
+            </div>
+        </div>
+ {% endblock %}

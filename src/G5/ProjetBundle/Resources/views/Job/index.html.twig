@@ -1,0 +1,61 @@
+{# src/G5/ProjetBundle/Resources/views/Projet/index.html.twig #}
+ {% extends '::base.html.twig' %}
+{#% block stylesheets %}
+    {{ parent() }}
+<link href="{{ asset('/css/contact.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %#}
+ {% block body %}
+
+<div class="row jumbotron">
+    {{'Hello'|trans}} 
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4 jumbotron">
+            <a href="{{ path('g5_job_all_job',{'_format': '.html'}) }}">
+                <p>
+                    Emplois et stages
+                </p>
+            </a>
+        </div>
+        <div class="col-lg-4 jumbotron">
+            <a href="{{ path('g5_job_all_estate',{'_format': '.html'}) }}">
+                <p>
+                    Imobiliers
+                </p>
+            </a>
+        </div>
+        <div class="col-lg-4 jumbotron">
+            <a href="{{ path('g5_job_all_vehicule',{'_format': '.html'}) }}">
+                <p>
+                    Véhicules
+                </p>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 jumbotron">
+            <a href="{{ path('g5_job_all_divers',{'_format': '.html'}) }}">
+                <p>
+                    Divers
+                </p>
+            </a>
+        </div>
+        <div class="col-lg-4">
+            <div class="alert alert-success">
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="alert alert-success">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+    </div>
+
+
+
+ {% endblock %}
+

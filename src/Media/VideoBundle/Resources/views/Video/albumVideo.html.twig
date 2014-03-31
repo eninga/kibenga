@@ -1,0 +1,53 @@
+ {% extends '::base.html.twig' %}
+{% block body %}
+<div class="row">
+    <div class="col-lg-offset-2 col-lg-8">
+        <h3 class="affiche" style="text-align: center">Albums vidéos
+         {% if is_granted('ROLE_VIDEO') %}
+                <a class="btn btn-primary btn-sm pull-right " href="{{ path('media_video_add_album') }}">
+                    <span class="glyphicon glyphicon-edit"></span>
+                    Ajouter un album vidéo
+                </a>
+         {% endif %}
+            </h3>
+            <ul class="list-group">
+        {% for album in albums %}
+
+                {% set size = album.videos | length %}
+                    <a  href="{{ path('media_video_display_video',{"id": album.id}) }}">
+                        <li class="list-group-item">
+                           {{ album.nom}}
+                            <span class="badge">{{size}} <span class="glyphicon glyphicon-facetime-video    "></span></span> 
+                        </li>
+
+                    </a>
+
+                {% else %}
+                    <p>
+                        No albums yet.
+
+                    </p>
+
+             {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <script type="text/javascript">
+          $(document).ready(function() {
+                $(".fancybox").fancybox({
+                        openEffect	: 'none',
+                        closeEffect	: 'none'
+                });
+                $(".various").fancybox({
+                        fitToView	: false,
+                        width		: '70%',
+                        height		: '70%',
+                        autoSize	: false,
+                        closeClick	: false,
+                        openEffect	: 'none',
+                        closeEffect	: 'none'
+                 });
+        });
+            </script>
+{% endblock %}
+

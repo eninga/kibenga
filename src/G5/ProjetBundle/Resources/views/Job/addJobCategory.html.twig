@@ -1,0 +1,16 @@
+{# src/G5/ProjetBundle/Resources/views/Projet/addJobCategory.html.twig #}
+ {% extends '::base.html.twig' %}
+{% block body %}
+<h3>Nouvelle catégorie de Job</h3>
+<hr/>
+<div class="row">
+    <div class="col-lg-6">
+        <div role="form" class="well">
+            <form class="form-group" method="post" {{ form_enctype(form) }}>
+                     {{ form_widget(form) }}
+                    <input type="submit" formnovalidate="true" class="btn btn-primary" />
+                </form>
+            </div>
+        </div>
+    </div>
+ {% endblock %}

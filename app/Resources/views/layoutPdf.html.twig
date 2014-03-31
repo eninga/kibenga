@@ -1,0 +1,23 @@
+{# app/Resources/views/layoutPdf.html.twig #}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="{{ asset('css/main.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('css/bootstrap.min.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('css/bootstrap-theme.min.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('http://fonts.googleapis.com/css?family=Open+Sans|Oswald|Roboto|Ubuntu|Cantora+One|Old+Standard+TT|Patua+One') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('css/custom.css') }}" type="text/css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="container">
+            <page backleft="5mm" backtop="7mm" backbottom="7mm" backright="10mm"> 
+                <page_footer>
+                    [[page_cu]]/[[page_nb]]
+                </page_footer>
+                {% block body %}
+
+                {% endblock %}
+            </page>
+        </div> <!-- /container -->
+    </body>
+</html>

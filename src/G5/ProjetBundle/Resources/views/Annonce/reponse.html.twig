@@ -1,0 +1,23 @@
+{# src/G5/ProjetBundle/Resources/views/Projet/showJob.html.twig #}
+ {% extends '::base.html.twig' %}
+{#% block stylesheets %}
+    {{ parent() }}
+<link href="{{ asset('/css/contact.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %#}
+ {% block body %}
+<div class="row">
+    <br/>
+        <br/>
+    <div class="alert alert-success">
+        
+        <h2>{%trans%}Votre réponse pour{%endtrans%} "{{annonce.titre}}" {%trans%}a été envoyée{%endtrans%}!</h2>
+        <a class="list-group-item alert-info" href="{{ path('g5_show_annonce', {"id": annonce.id,"titre": annonce.titre})}}">
+            {%trans%}Retour à l'annonce{%endtrans%}
+        </a>
+        <a class="list-group-item alert-info" href="{{ path('g5_all_annonce')}}">
+            {%trans%}Retour aux annonces{%endtrans%}
+        </a>
+    </div>
+</div>
+ {% endblock %}
+

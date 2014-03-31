@@ -1,0 +1,77 @@
+# src/G5/ProjetBundle/Resources/translations/messages.rn.yml
+ 
+# On veut traduire « Hello » en « Bonjour »
+Hello: Kaze
+hello: kaze
+Register: Kwiyandikisha
+register: kwiyandikisha
+Job: Akazi
+job: akazi
+Jobs: Akazi
+jobs: akazi
+advent: itangazo
+Advents: Amatangazo
+traineeship: stage
+home: itanguriro
+Home: Itanguriro
+login: login
+username: izina ryugokoresha kuriyi site (pseudo)
+lastename: izina
+firstname: amatazirano
+password: mot de passe
+photo: ifoto
+Photos: Amafoto
+Message: Mesaje
+Messages: Mesaje
+Déscription: Déscription
+'Lieu et Contact public': 'Lieu et Contact public'
+Prix: Igiciro
+Marque: Ubwoko
+Kilométrage: Ibirometero
+Etat: Etat
+Energie: Inyawa
+'Année de fabrication': 'Umwaka yakozwemwo'
+Surface: uburinganire
+'Nombre de pièces': 'Ivyumba'
+'Contacter l''annonceur': 'Contacter l''annonceur'
+'Mes réponses': 'Inyishu zanje'
+'Aucune réponse actuelement': 'Ntanyishu nimwe ihari ubu'
+'Retour aux annonces': 'Subira kumatangazo'
+'publiée le': 'vyanditswe itariki'
+à: i
+'voir les détails': 'voir les détails'
+'Aucune annonce trouvée': 'Aucune annonce trouvée'
+'Votre photo pour': 'ifoto yanyu'
+'a été ajoutée': 'a été ajoutée'
+'Retour à l''annonce': 'Retour à l''annonce'
+'Retour à mes annonces': 'Retour à mes annonces'
+'Ajouter une autres photo': 'Ajouter une autres photo'
+'Votre réponse pour': 'Votre réponse pour'
+'a été envoyéee': 'a été envoyéee'
+'a été envoyée': 'a été envoyée'
+prix: igiciro
+lieu: ikibanza
+'Service en cours de lancement': 'Service en cours de lancement'
+merci: murakoze
+bye: aakagaruka
+g5:
+    projet:
+        annonce:
+            ragarder: raba
+            merci: murakoze
+            
+mention:
+    legale: > 
+        Les informations recueillies sur ce site permettent de vous identifier afin
+        vous identifier.
+        
+    charte: |
+        charte du site
+        
+Emplois/Stages: Akazi / Stages
+Chercher: Rondera
+edit: Uzuza
+    
+change de langue: hindura
+
+

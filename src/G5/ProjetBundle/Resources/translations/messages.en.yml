@@ -1,0 +1,75 @@
+# src/G5/ProjetBundle/Resources/translations/messages.en.yml
+ 
+# On veut traduire « Hello » en « Bonjour »
+Hello: Hello
+hello: hello
+Register: Register
+register: register
+Job: Job
+job: job
+advent: advent
+Advents: Advents
+traineeship: traineeship
+home: home
+Home: Home
+login: login
+username: username
+lastename: lastname
+firstname: firstname
+password: password
+photo: picture
+Photos: Pictures
+Message: Message
+Messages: Messages
+Déscription: Déscription
+'Lieu et Contact public': 'Lieu et Contact public'
+Prix: Prix
+Marque: Marque
+Kilométrage: Kilométrage
+Etat: Etat
+Energie: Energie
+'Année de fabrication': 'Année de fabrication'
+Surface: Surface
+'Nombre de pièces': 'Number of rooms'
+'Contacter l''annonceur': 'Contacter l''annonceur'
+'Mes réponses': 'My responses'
+'Aucune réponse actuelement': 'there is response now'
+'Retour aux annonces': 'Return to advent'
+'publiée le': 'published at'
+à: at
+'voir les détails': 'see details'
+'Aucune annonce trouvée': 'Nothing found'
+'Votre photo pour': 'Your picture for'
+'a été ajoutée': 'has been added'
+'Retour à l''annonce': 'Retour à l''annonce'
+'Retour à mes annonces': 'Retour à mes annonces'
+'Ajouter une autres photo': 'Ajouter une autres photo'
+'Votre réponse pour': 'Your reponse to'
+'a été envoyéee': 'has been sent'
+'a été envoyée': 'has been sent'
+prix: price
+lieu: area
+'Service en cours de lancement': 'Service will be launched soon'
+merci: thank you
+bye: bye
+g5:
+    projet:
+        annonce:
+            ragarder: look
+            merci: thank you
+            
+mention:
+    legale: > 
+        Les informations recueillies sur ce site permettent de vous identifier afin
+        vous identifier.
+        
+    charte: |
+        charte du site
+        
+Emplois/Stages: Jobs/traineeship
+Chercher: Look for
+edit: Edit
+    
+change de langue: switch
+
+

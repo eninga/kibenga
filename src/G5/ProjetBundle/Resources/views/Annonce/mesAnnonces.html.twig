@@ -1,0 +1,118 @@
+{# src/G5/ProjetBundle/Resources/views/Projet/showAnnonce.html.twig #}
+ {% extends '::base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+<link href="{{ asset('/css/contact.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+ {% block body %}
+<h3 class="titre">{%trans%}Mes annonces{%endtrans%} {{'filtrer'|trans}}</h3>
+<hr/>
+<div class="annonce" id="content">
+  {% for annonce in annonces | reverse%}
+            {% set size = annonce.photos | length %}
+        <div class="row well">
+            <a class="" href="{{ path('g5_show_mon_annonce', {"id": annonce.id,"titre": annonce.titre}) }}">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        {{ annonce.photos|length}} 
+                        {% if size == 0 %}photos{%endif%}
+                        {% if size == 1 %}photo{%endif%}
+                        {% if size > 1 %}photos{%endif%}
+                         {% if size == 0 %}
+                        <img class="img-responsive img-thumbnail "
+                             src="{{ asset('album_empty.png') }}"
+                             width=""                                        
+                             />                                   
+                          {% elseif size > 0 %}
+                             {% set first = annonce.photos | first %}
+                    <img class="img-responsive img-thumbnail "
+                         src="{{ asset(first.getWebPath()) }}"
+                         alt="{{ first.alt}}"
+                         width=""                                        
+                         />
+                     {% endif %}
+            </div>
+            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                <h4>
+                        {{ annonce.titre}}
+                    </h4>
+                    <small class="pull-right">{{'publiée le'|trans}} {{ annonce.createdAt|date("d/m/Y") }}<br/> {{'à'|trans}} {{ annonce.createdAt|date("h:i:s") }}</small>
+                    <p>   
+                        <b>{{'prix'|trans}}</b>  : {{ annonce.prix}} € <br/> 
+                        <b>{{'lieu'|trans}}</b> :   {{ annonce.lieu}}<br/>
+
+                    </p>
+
+                    <p class="list-group-item list-group alert-info">{{'voir les détails'|trans}}</p>
+                </div>
+            </a>
+        </div>
+
+
+
+  {% else %}
+        <div class="alert alert-info">
+            <h4>{%trans%}Vous n'avez pas encore posté d'annonce {%endtrans%}.</h4>
+            <a class="btn btn-info btn-block" href="{{ path('g5_add_annonce_by_category') }}">
+                         {{'ajouter une annonce'|trans}}
+               </a>
+               <a class="btn btn-info btn-block" href="{{ path('home') }}">
+                   <span class="glyphicon glyphicon-chevron-left"></span>{{'home'|trans}}
+               </a>
+            </div>
+  {% endfor %}
+        </div>
+        <div id="page_navigation"> </div>
+        <script>
+ 
+                 var show_per_page = 6;
+                 var current_page = 0;
+
+                 function set_display(first, last) {
+                     $('#content').children().css('display', 'none');
+                     $('#content').children().slice(first, last).css('display', 'block');
+                 }
+
+                 function previous(){
+                     if($('.active').prev('.page_link').length) go_to_page(current_page - 1);
+                 }
+
+                 function next(){
+                     if($('.active').next('.page_link').length) go_to_page(current_page + 1);
+                 }
+
+                 function go_to_page(page_num){
+                     current_page = page_num;
+                     start_from = current_page * show_per_page;
+                     end_on = start_from + show_per_page;
+                     set_display(start_from, end_on);
+                     $('.active').removeClass('active');
+                     $('#id' + page_num).addClass('active');
+                 } 
+
+                 $(document).ready(function(){
+                     var number_of_pages = Math.ceil($('#content').children().size() / show_per_page);
+
+                     var nav = '<div class="pager">'
+                     nav += '<ul>';
+                     nav += '<li class="previous_link">';
+                     nav += '<a href="javascript:previous();"><span class="glyphicon glyphicon-arrow-left"></span></a>';
+                     nav += '';
+                     var i = -1;
+                     while(number_of_pages > ++i){
+                         nav += '<li class="page_link'
+                         if(!i) nav += ' active';
+                         nav += '" id="id' + i +'">';
+                         nav += '<a href="javascript:go_to_page(' + i +')">'+ (i + 1) +'</a>';
+                         nav += '';
+                     }
+                     nav += '<li class="next_link" >';
+                     nav += '<a href="javascript:next();"><span class="glyphicon glyphicon-arrow-right"></span></a>';
+                     nav += '';
+                     nav += '</ul>';
+                     nav += '</div>';
+
+                     $('#page_navigation').html(nav);
+                     set_display(0, show_per_page);
+                 });
+            </script>
+ {% endblock %}

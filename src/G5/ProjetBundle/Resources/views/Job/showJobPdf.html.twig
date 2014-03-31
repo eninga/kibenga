@@ -1,0 +1,90 @@
+{# src/G5/ProjetBundle/Resources/views/Projet/showJobPdf.html.twig #}
+<style type="text/css">
+        <!--
+        table{
+            border-collapse: collapse
+        }
+        -->
+    </style>
+ {% block body %}
+    <page backcolor="#F8F8FF" backleft="5mm" backtop="7mm" backbottom="7mm" backright="20mm"> 
+        <page_footer>
+            [[page_cu]]/[[page_nb]]
+        </page_footer>
+        <h3>
+        {{ job.titre | raw}}
+            </h3>
+            <hr/>
+            <h4>
+                Presentation de la boite
+            </h4>
+            <p>
+                {{ job.presentation | raw}}
+                </p>
+                <h4>
+                    Mission
+                </h4>
+                <p>
+                {{ job.mission | raw}}
+                    </p>
+
+                    <h4>
+                        Profil
+                    </h4>
+                    <p>
+                    {{ job.profil | raw}}
+                        </p>
+                        <table align="center">
+                            <thead>
+                                <tr>
+                                    <th style="width: 20%; text-align: left;"></th>
+                                    <th style="width: 80%; text-align: left;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th style="width: 20%; text-align: left; ">Debut</th>
+                                    <td style="width: 80%; text-align: left; ">{{ job.debut | raw}}</td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 20%; text-align: left; ">Contrat</th>
+                                    <td style="width: 80%; text-align: left; ">{{ job.contrat | raw}}</td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 20%; text-align: left; ">Localisation</th>
+                                    <td style="width: 80%; text-align: left; ">{{ job.region | raw}}{{job.pays| raw}}</td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 20%; text-align: left; ">Remuneration</th>
+                                    <td style="width: 80%; text-align: left; ">{{ job.remuneration | raw}}</td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 20%; text-align: left; ">Secteur</th>
+                                    <td style="width: 80%; text-align: left; ">{{ job.secteur | raw}}</td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 20%; text-align: left; ">Contact</th>
+                                    <td style="width: 80%; text-align: left; ">
+                                    {{ job.contact | raw}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th style="width: 20%; text-align: left; ">Adresse</th>
+                                        <td style="width: 80%; text-align: left; ">{{ job.adresse | raw}}</td>
+                                    </tr>
+                                </tbody>
+
+
+                            </table>
+                            <h4>
+                                Autres précisions
+                            </h4>
+                            <p>
+                                {{ job.autres | raw}}
+                                </p>
+
+                                <hr/>
+
+                            </page>
+
+ {% endblock %}
+

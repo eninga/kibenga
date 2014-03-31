@@ -1,0 +1,55 @@
+media_photo_homepage:
+    pattern:  /home
+    defaults: { _controller: MediaPhotoBundle:Photo:index }
+    
+media_photo_albums:
+    pattern:  /secu/album/{id}
+    defaults: { _controller: MediaPhotoBundle:Photo:allAlbums }
+    
+media_photo_add_album:
+    pattern:  /adpic/add_albums.html
+    defaults: { _controller: MediaPhotoBundle:Photo:newAlbum }
+    
+media_photo_add_photo:
+    pattern:  /adpic/add photos/{id}photos.html
+    defaults: { _controller: MediaPhotoBundle:Photo:newPhoto }
+    
+media_photo_manage_demande:
+    pattern:  /secu/reponse
+    defaults: { _controller: MediaPhotoBundle:Photo:reponseDemande }
+    
+media_photo_demande_acces:
+    pattern:  /secu/{id}access
+    defaults: { _controller: MediaPhotoBundle:Photo:demandeAcces }
+    
+media_photo_demandeur_acces:
+    pattern:  /secu/demandeurAccess
+    defaults: { _controller: MediaPhotoBundle:Photo:acces }
+    
+media_photo_demande_accepte:
+    pattern:  /secu/{id}accepte
+    defaults: { _controller: MediaPhotoBundle:Photo:accepteDemande }
+    
+media_photo_messages:
+    pattern:  /secu/messages
+    defaults: { _controller: MediaPhotoBundle:Photo:messagesReceive }
+    
+media_photo_messageSent:
+    pattern:  /secu/messagesSent
+    defaults: { _controller: MediaPhotoBundle:Photo:messagesSent }
+    
+media_photo_send_messages:
+    pattern:  /secu/envoyer
+    defaults: { _controller: MediaPhotoBundle:Photo:sendMessage }
+    
+media_photo_response_messages:
+    pattern:  /secu/{dest}repondre{obj}
+    defaults: { _controller: MediaPhotoBundle:Photo:sendMessage }
+    
+media_photo_message:
+    pattern:  /secu/message{source}{id}
+    defaults: { _controller: MediaPhotoBundle:Photo:message }
+    
+
+  
+

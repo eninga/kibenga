@@ -1,0 +1,13 @@
+{# src/G5/ProjetBundle/Resources/views/Projet/category.html.twig #}
+ {% extends '::base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('/css/contact.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+ {% block body %}
+{{'Hello'|trans}}, je vois que tu avances avec sf_2 , courage <a href="{{ path('g5_job_homepage', {'_format': 'pdf'}) }}">
+    PDF Version
+</a>!!
+ {% endblock %}
+
+

@@ -1,0 +1,9 @@
+{%if tag == true %} 
+<small class="alert-success">
+    le role {{ roles  }} a été attribué à {{username}}
+</small>
+{%elseif tag == false %}
+<small class="alert-warning">
+    {{ username }} possède déjà ce role {{ roles  }}
+    </small>
+{% endif %}

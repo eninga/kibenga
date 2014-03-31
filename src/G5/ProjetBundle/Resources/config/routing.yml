@@ -1,0 +1,142 @@
+g5_job_homepage:
+    pattern:  /projet
+    defaults: { _controller: G5ProjetBundle:Job:index }
+
+g5_job_cat:
+    pattern:  /category
+    defaults: { _controller: G5ProjetBundle:Job:create }
+    
+g5_job_cat_job:
+    pattern:  /secu/category_job
+    defaults: { _controller: G5ProjetBundle:Job:addJobCategory }
+    
+g5_job_cat_show:
+    pattern:  /category_show/{id}
+    defaults: { _controller: G5ProjetBundle:Job:show }
+
+g5_job_cat_maj:
+    pattern:  /category_update/{id}
+    defaults: { _controller: G5ProjetBundle:Job:update }
+    
+g5_job_annonce:
+    pattern:  /nouvelle_annonce
+    defaults: { _controller: G5ProjetBundle:Job:addAnnonce }
+    
+g5_job_show_annonce:
+    pattern:  /les_annonces
+    defaults: { _controller: G5ProjetBundle:Job:showAnnonce }
+    
+g5_job_new_job:
+    pattern:  /new_job
+    defaults: { _controller: G5ProjetBundle:Job:newJob }
+    
+g5_job_update_job:
+    pattern:  /update_job/{id}/{cat}/{titre}{_format}
+    defaults: { _controller: G5ProjetBundle:Job:addJob }
+    
+g5_job_all_job:
+    pattern:  /jobs{_format}
+    defaults: { _controller: G5ProjetBundle:Job:allJobs, _format: .html}
+    
+g5_job_show_job:
+    pattern:  /job/{id}/{cat}/{titre}{_format}
+    defaults: { _controller: G5ProjetBundle:Job:showJob}
+    
+g5_job_show_job_pdf:
+    pattern:  /job/{id}/{titre}{_format}
+    defaults: { _controller: G5ProjetBundle:Job:showJobPdf}
+    
+g5_job_all_estate:
+    pattern:  /estates{_format}
+    defaults: { _controller: G5ProjetBundle:Job:allJobs, _format: .html}
+    
+g5_job_all_vehicule:
+    pattern:  /vehicules{_format}
+    defaults: { _controller: G5ProjetBundle:Job:allJobs, _format: .html}
+    
+##job
+
+g5_job_add_job:
+    pattern:  /secu/add_job
+    defaults: { _controller: G5ProjetBundle:Job:addJob }
+    
+g5_add_reponse_job:
+    pattern:  /secu/postuler{id}{titre}.html
+    defaults: { _controller: G5ProjetBundle:Job:addReponse}
+    
+g5_my_job:
+    pattern:  /secu/my_job{id}{titre}.html
+    defaults: { _controller: G5ProjetBundle:Job:myJob}
+    
+g5_my_jobs:
+    pattern:  /secu/my_jobs.html
+    defaults: { _controller: G5ProjetBundle:Job:myJobs}
+    
+    
+##################################################################
+#annonce
+g5_all_annonce:
+    pattern:  /annonces.html
+    defaults: { _controller: G5ProjetBundle:Annonce:all}
+g5_all_mes_annonces:
+    pattern:  /secu/mesAnnonces.html
+    defaults: { _controller: G5ProjetBundle:Annonce:mesAnnonces}
+    
+g5_show_annonce:
+    pattern:  /annonce{id}/{titre}.html
+    defaults: { _controller: G5ProjetBundle:Annonce:show}
+    
+g5_show_mon_annonce:
+    pattern:  /secu/mon_annonce{id}/{titre}.html
+    defaults: { _controller: G5ProjetBundle:Annonce:monAnnonce}
+    
+g5_add_annonce:
+    pattern:  /secu/{category}new{idCat}annonce.html
+    defaults: { _controller: G5ProjetBundle:Annonce:addAnnonce}
+    
+g5_add_reponse_annonce:
+    pattern:  /secu/reponse{id}{titre}.html
+    defaults: { _controller: G5ProjetBundle:Annonce:addReponse}
+    
+g5_add_photo_annonce:
+    pattern:  /secu/photo_annonce{id}{titre}.html
+    defaults: { _controller: G5ProjetBundle:Annonce:addPhoto}
+    
+g5_add_annonce_by_category:
+    pattern:  /secu/categories.html
+    defaults: { _controller: G5ProjetBundle:Annonce:categories}   
+               
+g5_reponse_annonce:
+    pattern:  /secu/{id}reponses.html
+    defaults: { _controller: G5ProjetBundle:Annonce:reponse}
+    
+g5_sous_reponse_annonce:
+    pattern:  /secu/sous{id}reponses.html
+    defaults: { _controller: G5ProjetBundle:Annonce:sousReponse}
+    
+g5_photo_annonce:
+    pattern:  /secu/{id}photos.html
+    defaults: { _controller: G5ProjetBundle:Annonce:photo}
+    
+g5_delete_annonce:
+    pattern:  /secu/{id}delete.html
+    defaults: { _controller: G5ProjetBundle:Annonce:delete}
+    
+g5_add_sous_reponse_annonce:
+    pattern:  /secu/{idRep}sous{titre}repo{idAnnonce}.html
+    defaults: { _controller: G5ProjetBundle:Annonce:addSousReponse}
+    
+translate:
+    pattern:  /local/{val}
+    defaults: { _controller: G5ProjetBundle:Common:translate}
+    
+search:
+    pattern:  /searching
+    defaults: { _controller: G5ProjetBundle:Common:search}
+    
+load_annonce_size:
+    pattern:  /annonceeeeeeno
+    defaults: { _controller: G5ProjetBundle:Common:annonceSize}
+  
+
+

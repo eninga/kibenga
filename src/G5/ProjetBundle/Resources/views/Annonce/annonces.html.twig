@@ -1,0 +1,136 @@
+{# src/G5/ProjetBundle/Resources/views/Projet/showAnnonce.html.twig #}
+ {% extends '::base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+<link href="{{ asset('/css/contact.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+ {% block body %}
+
+{% for flashMessage in app.session.flashbag.get('add_annonce') %}
+
+<div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content alert-success">
+            <!-- <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                 <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+             </div>
+            -->
+            <div style="text-align: center" class="modal-body">
+                <div class="flash-notice">
+
+                    <h4> {{ flashMessage|nl2br }}</h4>
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">{{'Fermer'|trans}}</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+
+<h3 class="titre">{%trans%}Tous les annonces{%endtrans%} {{'filtrer'|trans}}</h3>
+<hr/>
+<div class="annonce" id="content">
+  {% for annonce in annonces | reverse%}
+            {% set size = annonce.photos | length %}
+        <div class="row well">
+            <a class="" href="{{ path('g5_show_annonce', {"id": annonce.id,"titre": annonce.titre}) }}">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        {{ annonce.photos|length}} 
+                        {% if size == 0 %}photos{%endif%}
+                        {% if size == 1 %}photo{%endif%}
+                        {% if size > 1 %}photos{%endif%}
+                         {% if size == 0 %}
+                        <img class="img-responsive img-thumbnail "
+                             src="{{ asset('album_empty.png') }}"
+                             width=""                                        
+                             />                                   
+                          {% elseif size > 0 %}
+                             {% set first = annonce.photos | first %}
+                    <img class="img-responsive img-thumbnail "
+                         src="{{ asset(first.getWebPath()) }}"
+                         alt="{{ first.alt}}"
+                         width=""                                        
+                         />
+                     {% endif %}
+            </div>
+            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                <h4>
+                        {{ annonce.titre}}
+                    </h4>
+                    <small class="pull-right">{{'publiée le'|trans}} {{ annonce.createdAt|date("d/m/Y") }}<br/> {{'à'|trans}} {{ annonce.createdAt|date("H:i:s") }}</small>
+                    <p>   
+                        <b>{{'prix'|trans}}</b>  : {{ annonce.prix}} € <br/> 
+                        <b>{{'lieu'|trans}}</b> :   {{ annonce.lieu}}<br/>
+                    </p>
+                    <p class="list-group-item list-group alert-info">{% trans %}voir les détails{% endtrans %}</p>
+                </div>
+            </a>
+        </div>
+
+
+
+  {% else %}
+        <h2>{% trans %}Aucune annonce trouvée{% endtrans %}.</h2>
+  {% endfor %}
+    </div>
+    <div id="page_navigation"> </div>
+    <script>
+                    var show_per_page = 6;
+             var current_page = 0;
+
+             function set_display(first, last) {
+                 $('#content').children().css('display', 'none');
+                 $('#content').children().slice(first, last).css('display', 'block');
+             }
+
+             function previous(){
+                 if($('.active').prev('.page_link').length) go_to_page(current_page - 1);
+             }
+
+             function next(){
+                 if($('.active').next('.page_link').length) go_to_page(current_page + 1);
+             }
+
+             function go_to_page(page_num){
+                 current_page = page_num;
+                 start_from = current_page * show_per_page;
+                 end_on = start_from + show_per_page;
+                 set_display(start_from, end_on);
+                 $('.active').removeClass('active');
+                 $('#id' + page_num).addClass('active');
+             } 
+
+             $(document).ready(function(){
+                 var number_of_pages = Math.ceil($('#content').children().size() / show_per_page);
+
+                 var nav = '<div class="pager">'
+                 nav += '<ul>';
+                 nav += '<li class="previous_link">';
+                 nav += '<a href="javascript:previous();"><span class="glyphicon glyphicon-arrow-left"></span></a>';
+                 nav += '';
+                 var i = -1;
+                 while(number_of_pages > ++i){
+                     nav += '<li class="page_link'
+                     if(!i) nav += ' active';
+                     nav += '" id="id' + i +'">';
+                     nav += '<a href="javascript:go_to_page(' + i +')">'+ (i + 1) +'</a>';
+                     nav += '';
+                 }
+                 nav += '<li class="next_link" >';
+                 nav += '<a href="javascript:next();"><span class="glyphicon glyphicon-arrow-right"></span></a>';
+                 nav += '';
+                 nav += '</ul>';
+                 nav += '</div>';
+
+                 $('#page_navigation').html(nav);
+                 set_display(0, show_per_page);
+             });
+        </script>
+ {% endblock %}

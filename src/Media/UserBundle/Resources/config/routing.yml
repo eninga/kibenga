@@ -1,0 +1,14 @@
+media_user_members:
+    pattern:  /role/allUsers
+    defaults: { _controller: MediaUserBundle:GestionUser:allUser }
+    
+media_user_member_add_role:
+    pattern:  /role/{username}{role}add_role
+    defaults: { _controller: MediaUserBundle:GestionUser:addRole }
+    
+media_user_member_remove_role:
+    pattern:  /role/{username}{role}remove_role
+    defaults: { _controller: MediaUserBundle:GestionUser:removeRole }
+    
+  
+

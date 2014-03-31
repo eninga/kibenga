@@ -1,0 +1,15 @@
+media_photo_homepage:
+    pattern:  /
+    defaults: { _controller: MediaPhotoBundle:Photo:allAlbums }
+    
+media_photo_albums:
+    pattern:  /albums.html
+    defaults: { _controller: MediaPhotoBundle:Photo:allAlbums }
+    
+media_photo_add_album:
+    pattern:  /add_albums.html
+    defaults: { _controller: MediaPhotoBundle:Photo:newAlbum }
+    
+media_photo_add_photo:
+    pattern:  /add photos/{id}photos.html
+    defaults: { _controller: MediaPhotoBundle:Photo:newPhoto }

@@ -1,0 +1,37 @@
+{# src/G5/ProjetBundle/Resources/views/Projet/showAnnonce.html.twig #}
+ {% extends '::base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+<link href="{{ asset('/css/contact.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+ {% block body %}
+<div class="job">
+    <h3 class="titre">{%trans%}Mes offres emplois et stages{%endtrans%}</h3>
+<hr/>
+    <div class="list-group">
+  {% for job in jobs %}
+
+<!-- <h1>{{ job.category.nom | truncate(200, true, '...') }}</h1>-->
+            <a class="list-group-item" href="{{ path('g5_my_job', {"id": job.id,"titre": job.titre|replace({" ":"-",".":""})}) }}">
+               <span class="badge"> {{ job.postulats|length}} {{'postulat'|trans}}(s)</span>
+                <h4>
+                        {{ job.titre}}
+                        <small class="">publiéé le {{ job.createdAt|date("d/m/Y") }}</small>
+
+                    </h4>
+                </a>
+
+  {% else %}
+            <div class="alert alert-info">
+                <h4>{%trans%}Vous n'avez pas encore posté d'emplois ou de stages {%endtrans%}.</h4>
+                <a class="btn btn-info btn-block" href="{{ path('g5_job_add_job') }}">
+                         {{'Ajouter emploi,stage'|trans}}
+                    </a>
+                <a class="btn btn-info btn-block" href="{{ path('home') }}">
+                    <span class="glyphicon glyphicon-chevron-left"></span>{{'home'|trans}}
+                    </a>
+        </div>
+  {% endfor %}
+                </div>
+            </div>
+ {% endblock %}

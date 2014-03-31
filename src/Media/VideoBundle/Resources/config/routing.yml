@@ -1,0 +1,16 @@
+media_video_homepage:
+    pattern:  /home_video
+    defaults: { _controller: MediaVideoBundle:Video:index }
+    
+media_video_add_album:
+    pattern:  /video/add_AlbumVideo
+    defaults: { _controller: MediaVideoBundle:Video:newAlbum }
+    
+media_video_add_video:
+    pattern:  /video/{id}add_video
+    defaults: { _controller: MediaVideoBundle:Video:newVideo }
+    
+media_video_display_video:
+    pattern:  /video/{id}videos
+    defaults: { _controller: MediaVideoBundle:Video:video }
+    

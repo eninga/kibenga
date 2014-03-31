@@ -1,0 +1,11 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<div class="row">
+    <div class="col-lg-offset-2 col-lg-8">
+        <form action="{{ path('fos_user_group_new') }}" {{ form_enctype(form) }} method="POST" class="fos_user_group_new">
+    {{ form_widget(form) }}
+                <div>
+                    <input type="submit" value="{{ 'group.new.submit'|trans }}" />
+                </div>
+            </form>
+        </div>
+    </div>

@@ -1,0 +1,107 @@
+{# src/G5/ProjetBundle/Resources/views/Projet/showJob.html.twig #}
+ {% extends '::base.html.twig' %}
+{#% block stylesheets %}
+    {{ parent() }}
+<link href="{{ asset('/css/contact.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %#}
+ {% block body %}
+<div class="row">
+    <!--<div class="col-lg-2">
+    </div>-->
+    <div class=" job">
+        <h3>
+            {{ job.titre | raw}}
+
+                <a class="alert-success" href="{{ path('g5_job_show_job_pdf', {"id": job.id,"titre": job.titre,'_format': '.pdf'}) }}">
+                    <span class="glyphicon glyphicon-download-alt"></span><span class="glyphicon glyphicon-print orange"></span>
+                </a>
+            </h3>
+            {%if app.user == job.auteur%}
+            <div class="alert alert-warning">
+
+                Vous êtes proprietaire de cette annonce!
+                <a class="list-group-item" href="{{ path('g5_my_job', {"id": job.id,"titre": job.titre}) }}">
+                    Voir en tant que propriétaire
+                </a>
+            </div>
+            {%endif%}
+            <h4>
+                Presentation de l'annonceur
+            </h4>
+            <p>
+                {{ job.presentation | raw}}
+                </p>
+                <h4>
+                    Mission
+                </h4>
+                <p>
+                {{ job.mission | raw}}
+                    </p>
+
+                    <h4>
+                        Profil
+                    </h4>
+                    <p>
+                    {{ job.profil | raw}}
+                        </p>
+                         <h4>
+                                Autres précisions
+                            </h4>
+                            <p>
+                                {{ job.autres | raw}}
+                                </p>
+                                <hr/>
+                        <div>
+                            <table class="table table-striped table-hover table-condensed">
+                                <tr>
+                                    <th>Debut</th>
+                                    <td>{{ job.debut | raw}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Contrat</th>
+                                    <td>{{ job.contrat | raw}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Localisation</th>
+                                    <td>{{ job.region | raw}}{{job.pays| raw}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Remuneration</th>
+                                    <td>{{ job.remuneration | raw}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Secteur</th>
+                                    <td>{{ job.secteur | raw}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Contact</th>
+                                    <td>{{ job.contact | raw}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Adresse</th>
+                                    <td>{{ job.adresse | raw}}</td>
+                                </tr>
+
+
+                            </table>
+                           
+                            </div>
+                                    {%if app.user != job.auteur%}
+
+                            <div class="alert alert-success">
+                                <a class="list-group-item" href="{{ path('g5_add_reponse_job', {"id": job.id,"titre": job.titre|replace({" ":"-",".":""})}) }}">
+                                    Postuler
+                                </a>
+                            </div>
+                                    {%endif%}
+
+                        </div>
+                       <!-- <div class="col-lg-3">
+
+                        </div>-->
+
+
+                    </div>
+
+ {% endblock %}
+

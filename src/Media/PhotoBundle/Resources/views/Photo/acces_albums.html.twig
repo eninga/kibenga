@@ -1,0 +1,56 @@
+ {% extends '::base.html.twig' %}
+{% block body %}
+<div class="row">
+
+    <div class="col-lg-offset-3 col-lg-5">
+        <div class="bordo">
+
+                {% set size = album.photos | length %}
+            <div class="affiche-image ">
+                <h4>
+                         {{ album.name }}
+                        <span style="font-size: small;background-color: greenyellow;">
+                        {{ size }} photos 
+                            </span>
+
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a class="btn btn-primary btn-xs pull-right" href="{{ path('media_photo_add_photo',{"id": album.id})}}">
+                                <span class="glyphicon glyphicon-edit"></span> 
+                                Ajouter une photo
+                                <span class="glyphicon glyphicon-picture "></span>
+                            </a>
+                             {% endif %}
+                        </h4>
+                        <div class="danger alert alert-danger">
+                            <p>
+                                Vous n'avez pas encore accès à cet album<br/>
+                                <span album="{{album.id}}" class="demander btn btn-default btn-info">Demander l'accès.</span>
+
+                            </p> 
+                        </div>
+                        <div id="demande" class="alert alert-info">
+
+                        </div>
+                    <div class="pull-left">
+                            <a class="btn btn-primary btn-sm pull-right " href="{{ path('media_photo_homepage') }}">
+                                Retour à l'accueil
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+                    $(function(){
+                        $('.demander').click(function () {
+                            var id = $(this).attr('event');
+                            $('#demande').load("{{ path('media_photo_demande_acces', {'id': album.id}) }}");
+                            $('.demander').hide();
+                            $('.danger').hide();
+                            return false;
+                    });
+                 });
+            </script>
+{% endblock %}
+

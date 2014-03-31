@@ -1,0 +1,10 @@
+## YAML Template.
+---
+users:
+    type:     rest
+    resource: Media\UserBundle\Controller\GestionUserController
+
+comments:
+    type:     rest
+    parent:   users
+    resource: Media\UserBundle\Controller\GestionUserController

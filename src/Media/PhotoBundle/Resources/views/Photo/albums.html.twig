@@ -1,0 +1,128 @@
+ {% extends '::base.html.twig' %}
+{% block body %}
+<div class="row">
+    <div class="col-lg-2">
+        
+        <div class="affiche">
+            <h4>Usages</h4>
+        <p>
+        <blockquote>
+            <ol>
+                <li>
+                    Passer la souris sur l'image pour arrêter le diaporama si vous voulez avancer avec la souris.
+                </li>
+                <li>
+                    Cliquer sur l'extremité droite(gauche) or sur les                                   
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    de l'image pour avancer.
+                </li>
+                <li>
+                    Cliquer au milieu l'image pour l'afficher en mode réel.
+                </li>
+            </ol>
+
+        </blockquote>
+    </p>
+      </div>
+    </div>
+    <div class="col-lg-7">
+        <h3 class="affiche">Album
+         {% if is_granted('ROLE_USER') %}
+                <a class="btn btn-primary btn-sm pull-right " href="{{ path('media_photo_add_album') }}">
+                    <span class="glyphicon glyphicon-edit"></span> 
+                    Créer un album
+                </a>
+
+         {% endif %}
+            </h3>
+            <div class="bordo">
+
+                {% set size = album.photos | length %}
+                <div class="affiche-image ">
+                    <h4>
+                         {{ album.name }}
+                            <span style="font-size: small;background-color: greenyellow;">
+                        {{ size }} photos 
+                                </span>
+
+                        {% if is_granted('ROLE_USER') %}
+                                <a class="btn btn-primary btn-xs pull-right" href="{{ path('media_photo_add_photo',{"id": album.id})}}">
+                                    <span class="glyphicon glyphicon-edit"></span> 
+                                    Ajouter une photo
+                                    <span class="glyphicon glyphicon-picture "></span>
+                                </a>
+                             {% endif %}
+                            </h4>
+                            {% if size > 0 %}
+                            {% set first = album.photos | first %}
+                            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner">
+                                    <div class="item active">
+                                        <a class="fancybox" rel="gallery1" href="{{ asset(first.getWebPath()) }}" title="{{ first.titre}} : {{ first.alt}}">
+                                            <img class="img-responsive img-thumbnail"
+                                                 src="{{ asset(first.getWebPath()) }}"
+                                                 alt="{{ first.alt}}"
+                                                 width="auto"
+                                                 />
+                                        </a>
+                                        <div class="carousel-caption">
+                                            <h2>Couverture de l'album {{ album.name }}</h2>
+                                        </div>
+                                    </div>
+                                {% for photo in album.photos %}
+                                        {% if photo!=first %}
+
+                                    <div class="item"> 
+                                        <a class="fancybox" rel="gallery1" href="{{ asset(photo.getWebPath()) }}" title="{{ photo.titre}} : {{ photo.alt}}">
+
+                                            <img class="img-responsive img-rounded"
+                                                 src="{{ asset(photo.getWebPath()) }}"
+                                                 alt="{{ photo.alt}}"
+                                                 width="auto"
+                                                 />
+                                        </a>
+
+                                    </div>
+                                        {% endif %}
+                               {% else %}
+                                    <p>
+                                        No pictures yet.
+                                    </p>
+                                {% endfor %}
+                                </div>
+
+                                <!-- Controls -->
+                                <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left"></span>
+                                </a>
+                                <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                </a>
+                            </div>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+              $(document).ready(function() {
+                    $(".fancybox").fancybox({
+                            openEffect	: 'none',
+                            closeEffect	: 'none'
+                    });
+                    $(".various").fancybox({
+                            fitToView	: false,
+                            width		: '70%',
+                            height		: '70%',
+                            autoSize	: false,
+                            closeClick	: false,
+                            openEffect	: 'none',
+                            closeEffect	: 'none'
+                     });
+            });
+                </script>
+{% endblock %}
+

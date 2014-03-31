@@ -1,0 +1,47 @@
+{# src/G5/ProjetBundle/Resources/views/Projet/showJob.html.twig #}
+ {% extends '::base.html.twig' %}
+{#% block stylesheets %}
+    {{ parent() }}
+<link href="{{ asset('/css/contact.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %#}
+ {% block body %}
+<div class="row">
+    {% for flashMessage in app.session.flashbag.get('suppression') %}
+        <div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content alert-success">
+                    <!-- <div class="modal-header">
+                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                         <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                     </div>
+                    -->
+                    <div style="text-align: center" class="modal-body">
+                        <div class="flash-notice">
+
+                            <h4> {{ flashMessage|nl2br }}</h4>
+
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">{{'Fermer'|trans}}</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endfor %}
+        <br/>
+        <br/>
+        <div class="alert alert-success">
+
+            <h2> "{{annonce.titre}}" a été supprimé!</h2>
+            <a class="list-group-item alert-info" href="{{ path('g5_all_mes_annonces')}}">
+           {{' Retour à mes annonces'|trans}}
+                </a>
+
+            </div>
+        </div>
+
+ {% endblock %}
+
